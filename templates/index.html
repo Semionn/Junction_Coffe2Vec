@@ -4,21 +4,33 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 <head lang="en">
     <meta charset="UTF-8">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/welcome_page.css') }}">
     <title>My First Dashboard</title>
 </head>
 <body>
 <!--Polly the best!-->
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="chart" id="bargraph">
-                <script>
-                    var graphs = {{plot | safe}};
-                    Plotly.plot('bargraph',graphs,{});
-                </script>
-            </div>
-        </div>
-    </div>
+<div id="e3_0">
+  <div id="ei1_97_1_256"></div>
+  <div id="ei1_97_1_259"></div><span id="ei1_97_1_260"></span><span id="ei1_97_1_261">We will present you draft web application for Paulig managers and Paulig business customers. It will combine already gathered data with 3rd party data for helpful visualizations and insights, moreover we will recommend useful actions for B2B managers to keep partnership with customers more effective</span><span id="ei1_97_1_262">Project: Coffee2Vec</span>
+  <div id="ei1_97_1_265"></div><span id="ei1_97_1_266"></span><span id="ei1_97_1_267">- It solves a problems like: stockouts (using weather data but not only), cold-start recommendations, churn detection and COVID lockdowns awareness. We also have a charity direction
+- This approach will increase customers engagement and retention, and it will makes world better</span><span id="ei1_97_1_268">Main points of our solution</span>
+  <div id="ei1_97_1_270"></div><span id="ei1_97_1_271">Coffee2Vec
+</span>
+  <div id="ei1_97_1_272"></div><span id="ei1_97_1_273">Polina & Sam</span><span id="ei1_97_1_274">Read More</span>
+  <div id="ei1_127_1_12"><a href="customer/main" id="ei1_123_1_13">Log in as manager</a></div>
+  <div id="ei1_123_1_12"><a href="customer/main" id="ei1_127_1_13">Log in as customer</a></div>
+</div>
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        <div class="col-md-6">-->
+<!--            <div class="chart" id="bargraph">-->
+<!--                <script>-->
+<!--                    var graphs = {{plot | safe}};-->
+<!--                    Plotly.plot('bargraph',graphs,{});-->
+<!--                </script>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
 </body>
 </html>

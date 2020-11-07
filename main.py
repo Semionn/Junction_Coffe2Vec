@@ -23,20 +23,25 @@ def create_plot():
     graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
     return graphJSON
 #
-# @app.route('/')
-# def index():
-#     bar = create_plot()
-#     return render_template('index.html', plot=bar)
+@app.route('/')
+def welcome():
+    bar = create_plot()
+    return render_template('index.html', plot=bar)
+
+@app.route('/customer/main')
+def customer_main():
+    bar = create_plot()
+    return render_template('main_customer_page.html', plot=bar)
 
 # @app.route('/')
 # def index():
 #     bar = create_plot()
 #     return render_template('index_figma_test.html', plot=bar)
 
-@app.route('/')
-def index():
-    bar = create_plot()
-    return render_template('index_figma2_page.html', plot=bar)
+# @app.route('/')
+# def index():
+#     bar = create_plot()
+#     return render_template('index_figma2_page.html', plot=bar)
 
 if __name__ == '__main__':
     app.run()
