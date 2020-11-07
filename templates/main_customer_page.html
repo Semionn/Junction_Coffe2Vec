@@ -6,7 +6,9 @@
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/main_customer_page.css') }}">
-    <title>My First Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <title>Coffee2Vec</title>
 </head>
 <body>
 <!--Polly the best!-->
@@ -37,5 +39,24 @@
     <div id="e29_94"></div>
     <span id="e29_96">Hello, KAFFECENTRALEN!</span>
 </div>
+<div class="container" style="width: 800px">
+    <div class="row" style="width: 800px">
+        <div class="col-md-6" style="width: 800px">
+            <div class="chart" id="bargraph" style="width: 800px">
+                <script>
+                    var graphs = {{plot | safe}};
+                    Plotly.plot('bargraph',graphs,{});
+                    // var graphs2 = {
+                    //   x: [2, 3, 4, 5],
+                    //   y: [16, 5, 11, 9],
+                    //   mode: 'lines',
+                    //   name: 'Lines'
+                    // };
+                    //
+                    // Plotly.newPlot('myDiv', data, layout);
+                </script>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

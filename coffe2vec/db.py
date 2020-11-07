@@ -10,13 +10,16 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 class CoffeeDB(object):
+    WEATHER_DATE_IDX = 0
+    WEATHER_TEMP_IDX = 1
+
     def __init__(self):
         self.db_path = "coffee_sqllite.db"
-        self.conn = sqlite3.connect(self.db_path)  # или :memory: чтобы сохранить в RAM
 
     def execute_query(self, query):
-        cursor = self.conn.cursor()
-        return cursor.execute(query)
+        with sqlite3.connect(self.db_path) as conn: # или :memory: чтобы сохранить в RAM
+            cursor = conn.cursor()
+            return cursor.execute(query)
 
     def drop_all_tables(self):
         drop_table_queries = self.execute_query("""
@@ -78,7 +81,7 @@ class CoffeeDB(object):
             """).fetchall()
 
     def get_start_date(self):
-        return datetime.datetime(2016, 10, 1)
+        return datetime.datetime(2018, 10, 1)
 
     def get_end_date(self):
         return datetime.datetime(2020, 11, 8)
@@ -138,8 +141,8 @@ class CoffeeDB(object):
             self.execute_query(f"""INSERT INTO customer VALUES
                               ('{name}', '{customer_type}')
                                """)
-        for customer in self.select_customers():
-            logging.info(customer)
+        # for customer in self.select_customers():
+        #     logging.info(customer)
 
     def make_probabilities(self, choices_count, default_probabilities=None):
         probabilities = [1 / choices_count] * choices_count
@@ -175,24 +178,28 @@ class CoffeeDB(object):
             self.execute_query(f"""INSERT INTO product VALUES
                               ('{product_name}', '{cost}', '{product_type}')
                                """)
-        for product in self.select_products():
-            logging.info(product)
+        # for product in self.select_products():
+        #     logging.info(product)
 
     def generate_temperature(self, date: datetime.datetime):
         min_temp = -10
         max_temp = 30
 
         day_of_year = date.timetuple().tm_yday
+        shifts_count = 20
+        local_shift = np.cos(day_of_year * np.pi * shifts_count / 365) * 2
+
         hottest_day = 365/2
         max_distance = hottest_day
         hottest_day_distance = abs(day_of_year - hottest_day)
         temp_range = (max_temp - min_temp)
-        result = min_temp + temp_range * (1 - hottest_day_distance / max_distance) + random.normal(0, temp_range * 0.05)
+        x = hottest_day_distance / max_distance
+        result = min_temp + temp_range * (np.cos(x * np.pi) + 1) / 2 + random.normal(0, temp_range * 0.05) + local_shift
         if date.hour < 9 or date.hour > 21:
             result -= 3  # night temp rough bias
         return result
 
-    def insert_weather(self, count_per_day=3):
+    def insert_weather(self, count_per_day=2):
         cur_date = self.get_start_date()
         end_date = self.get_end_date()
         if count_per_day > 8:
@@ -212,8 +219,9 @@ class CoffeeDB(object):
                                   ('{date_time}', '{temperature}','{wind_speed}', '{pressure}', '{precip_prob}', '{humidity}')
                                    """)
             cur_date += datetime.timedelta(days=1)
-        for weather in self.select_weather()[-300:]:
-            logging.info(weather)
+        logging.info(cur_date)
+        # for weather in self.select_weather()[-300:]:
+        #     logging.info(weather)
 
     def create_tables(self):
         self.execute_query("""CREATE TABLE city
