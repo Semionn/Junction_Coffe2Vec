@@ -35,10 +35,8 @@ def create_plot():
 
 @app.route('/')
 def index():
-    logging.warning(plotly.__version__)
     bar = create_plot()
     return render_template('index_figma2_page.html', plot=bar)
-
 
 if __name__ == '__main__':
     app.run()
