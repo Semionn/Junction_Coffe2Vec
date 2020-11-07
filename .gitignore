@@ -3,3 +3,5 @@
 /__pycache__/
 /coffe2vec_env/
 venv
+coffee_sqllite.db
+/coffe2vec/__pycache__/

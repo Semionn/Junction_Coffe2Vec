@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 import json
 import logging
+from coffe2vec import CoffeeDB
 
 app = Flask(__name__)
 
@@ -22,10 +23,13 @@ def create_plot():
     ]
     graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
     return graphJSON
-#
+
+
+
 @app.route('/')
 def welcome():
     bar = create_plot()
+    CoffeeDB().rebuild_db()
     return render_template('index.html', plot=bar)
 
 @app.route('/customer/main')
