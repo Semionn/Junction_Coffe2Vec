@@ -1,1 +1,1 @@
-waitress-serve --call 'main:create_app'
+venv/bin/python waitress_server.py
