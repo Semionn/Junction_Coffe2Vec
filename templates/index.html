@@ -22,17 +22,77 @@
   <div id="ei1_127_1_12"><a href="customer/main" id="ei1_123_1_13">Log in as manager</a></div>
   <div id="ei1_123_1_12"><a href="customer/main" id="ei1_127_1_13">Log in as customer</a></div>
 </div>
-<!--<div class="container">-->
-<!--    <div class="row">-->
-<!--        <div class="col-md-6">-->
-<!--            <div class="chart" id="bargraph">-->
-<!--                <script>-->
-<!--                    var graphs = {{plot | safe}};-->
-<!--                    Plotly.plot('bargraph',graphs,{});-->
-<!--                </script>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+<div class="container" style="width: 800px">
+    <div class="row" style="width: 800px">
+        <div class="col-md-6" style="width: 800px">
+            <div class="chart" id="bargraph" style="width: 800px">
+                <script>
+                    var graphs = {{plot | safe}};
+                    var layout = {
+                      title: {
+                        text:'Total revenue',
+                        xref: 'paper',
+                        x: 0.5,
+                      },
+                      yaxis: {
+                        title: {
+                          text: 'Revenue',
+                        }
+                      }
+                    };
+                    Plotly.plot('bargraph',graphs,layout);
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style="width: 800px">
+    <div class="row" style="width: 800px">
+        <div class="col-md-6" style="width: 800px">
+            <div class="chart" id="weather_plot" style="width: 800px">
+                <script>
+                    var graphs = {{weather_plot | safe}};
+                    var layout_weather = {
+                      title: {
+                        text:'Weather temperature',
+                        xref: 'paper',
+                        x: 0.5,
+                      },
+                      yaxis: {
+                        title: {
+                          text: 'Celsius',
+                        }
+                      }
+                    };
+                    Plotly.plot('weather_plot',graphs,layout_weather);
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style="width: 800px">
+    <div class="row" style="width: 800px">
+        <div class="col-md-6" style="width: 800px">
+            <div class="chart" id="weather_precip" style="width: 800px">
+                <script>
+                    var graphs = {{weather_precip | safe}};
+                    var layout_weather2 = {
+                      title: {
+                        text:'Precipitation probability',
+                        xref: 'paper',
+                        x: 0.5,
+                      },
+                      yaxis: {
+                        title: {
+                          text: 'Raininess',
+                        }
+                      }
+                    };
+                    Plotly.plot('weather_precip',graphs,layout_weather2);
+                </script>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
