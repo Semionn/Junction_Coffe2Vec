@@ -97,9 +97,18 @@ def welcome():
 @app.route('/customer/main')
 def customer_main():
     db.init_connection()
-    plot1, weather_plot = create_purchases_with_weather_plot()
+    plot1, weather_plot, _ = create_purchases_with_weather_plot()
     db.close_connection()
     return render_template('main_customer_page.html', plot=plot1, weather_plot=weather_plot)
+
+
+@app.route('/manager/main')
+def manager_main():
+    db.init_connection()
+    plot1, weather_plot, _ = create_purchases_with_weather_plot()
+    db.close_connection()
+    return render_template('main_manager_page.html', plot=plot1, weather_plot=weather_plot)
+
 
 if __name__ == '__main__':
     app.run()

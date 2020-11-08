@@ -1,10 +1,10 @@
-#welcome {
+#manager_main {
 	opacity:1;
 	width:1439px;
 	height:1010px;
 	position:absolute;
 	left:0px;
 	top:0px;
-	background-image:url(images/welcome_page.png);
+	background-image:url(images/manager_main_page.png);
 	background-repeat:no-repeat;
 }
